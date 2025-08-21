@@ -3,7 +3,7 @@ from settings import BOSS_SCALING
 from bullets.boss_raybull import BossBeam
 
 class Boss(arcade.Sprite):
-    def __init__(self, image="assets/player.png", scale=BOSS_SCALING):
+    def __init__(self, image="assets/boss.png", scale=BOSS_SCALING):
         super().__init__(image, scale)
         self.hp = 10
 
