@@ -98,4 +98,13 @@ class GameView(arcade.View):
                 self.bullet_list.remove(bullet)
                 for enemy in hit_list:
                     self.enemy_list.remove(enemy)
+
+        if len(self.boss_list) > 0:
+            boss = self.boss_list[0]
+            for bullet in list(self.bullet_list):
+                if arcade.check_for_collision(bullet, boss):
+                    self.bullet_list.remove(bullet)
+                    boss.take_damage(1)
+                    if boss.is_dead():
+                        boss.remove_from_sprite_lists()
     
