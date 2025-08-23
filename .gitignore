@@ -3,6 +3,7 @@ __pycache__/
 bullets/__pycache__/
 enemies/__pycache__/
 views/__pycache__/
+player/__pycache__/
 *.pyc
 *.pyo
 *.pyd
