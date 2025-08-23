@@ -2,7 +2,7 @@ import arcade
 from settings import BULLET_SPEED, SCREEN_HEIGHT
 
 class PlayerBullet(arcade.Sprite):
-    def __init__(self, x, y, image="assets/player.png", scale=0.10):
+    def __init__(self, x, y, image="assets/player_shot_2.png", scale=0.05):
         super().__init__(image, scale)
         self.center_x = x
         self.center_y = y

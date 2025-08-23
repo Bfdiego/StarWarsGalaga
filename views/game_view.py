@@ -36,11 +36,13 @@ class GameView(arcade.View):
         if level == 1:
             enemy_speed = 0.1
         elif level == 2:
-            enemy_speed = 0.3
+            enemy_speed = 0.4
         elif level == 3:
-            enemy_speed = 0.5
-        elif level == 4:
             enemy_speed = 0.7
+        elif level == 4:
+            enemy_speed = 0.95
+        else:
+            enemy_speed = 1+(level * 0.05)
         cols = 6
         xs = np.linspace(100, SCREEN_WIDTH - 100, cols, dtype=int)
         for x in xs:
