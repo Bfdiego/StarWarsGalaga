@@ -15,4 +15,5 @@ class Player(arcade.Sprite):
             self.left = 0
         if self.right > SCREEN_WIDTH:
             self.right = SCREEN_WIDTH
+
          
