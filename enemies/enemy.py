@@ -7,8 +7,10 @@ class Enemy(arcade.Sprite):
         self.center_x
         self.center_y 
         self.change_y = 0.1
+        self.game_over = False
 
     def update(self, delta_time: float):
         self.center_y -= self.change_y
         self.scale = ENEMY_SCALING + (0.00015 * (600 - self.center_y))
-        
+        if self.bottom < 60:
+            self.game_over = True

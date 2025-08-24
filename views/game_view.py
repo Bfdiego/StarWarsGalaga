@@ -3,8 +3,7 @@ import random
 import numpy as np
 from settings import (
     SCREEN_WIDTH, SCREEN_HEIGHT,
-    PLAYER_SPEED,
-    BOSS_SHOOT_INTERVAL
+    PLAYER_SPEED
 )
 from player.player import Player
 from enemies.enemy import Enemy
@@ -27,10 +26,12 @@ class GameView(arcade.View):
         self.player.center_y = 50
         self.player_list.append(self.player)
         boss = Boss()
-        boss.center_x = SCREEN_WIDTH // 2
+        boss.center_x = SCREEN_WIDTH // 2 - 120
         boss.center_y = SCREEN_HEIGHT - 90
         self.boss_list.append(boss)
-        
+        global level
+        level = 1
+
     def on_show_view(self):
         self.setup()
 
@@ -94,12 +95,17 @@ class GameView(arcade.View):
             self.boss_bullets.remove(raybull)
         self.boss_list[0].setCanShoot(True)
 
+    def shoot_raybull(self, delta_time):
+        self.boss_list[0].shoot_raybull(self.boss_bullets)
+        self.boss_list[0].setCanShoot(False)
+        arcade.schedule_once(self.clear_boss_bullet_list, 1.0)
+    
     def on_update(self, delta_time):
         global level
         self.player_list.update(delta_time)
         self.bullet_list.update(delta_time)
         self.enemy_list.update(delta_time)
-        self.boss_list.update(delta_time, self.boss_bullets)
+        self.boss_list.update(delta_time)
         # self.bullet_list.update()
         # self.boss_bullets.update()
         if len(self.enemy_list) == 0:
@@ -121,13 +127,13 @@ class GameView(arcade.View):
                     boss.take_damage(1)
                     if boss.is_dead():
                         boss.remove_from_sprite_lists()
+                        arcade.schedule_once(self.close_game, 1.0)
 
             shoot_chance = random.random()
-            if shoot_chance < 0.005 and boss.getCanShoot():
-                print("Boss shooting raybull")
-                boss.shoot_raybull(self.boss_bullets)
-                boss.setCanShoot(False)
-                arcade.schedule_once(self.clear_boss_bullet_list, 1.0)
+            if shoot_chance < 0.008 and boss.getCanShoot():
+                boss.moving(delta_time)
+                arcade.schedule_once(self.shoot_raybull, 1.0)
+                
 
         for raybull in list(self.boss_bullets):
             hit_list = arcade.check_for_collision_with_list(raybull, self.player_list)
@@ -136,5 +142,9 @@ class GameView(arcade.View):
                 for player in hit_list:
                     self.player_list.remove(player)
                     arcade.schedule_once(self.close_game, 1.0)
+        
+        for enemy in list(self.enemy_list):
+            if enemy.game_over:
+                arcade.schedule_once(self.close_game, 0.5)
     
 
