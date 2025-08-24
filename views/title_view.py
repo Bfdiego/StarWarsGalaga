@@ -1,6 +1,6 @@
 import arcade
 from views.game_view import GameView
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class TitleView(arcade.View):
     def __init__(self):

@@ -67,7 +67,7 @@ class GameView(arcade.View):
         self.bullet_list.draw()
         self.boss_list.draw()
         self.boss_bullets.draw()
-        arcade.draw_text(f"Level: {level}", 10, SCREEN_HEIGHT - 30, arcade.color.WHITE, 20)
+        arcade.draw_text(f"Wave: {level}", 10, SCREEN_HEIGHT - 30, arcade.color.WHITE, 20)
         arcade.draw_text("Boss HP: " + str(self.boss_list[0].hp) if len(self.boss_list) > 0 else "Boss HP: 0",
                          SCREEN_WIDTH - 200, SCREEN_HEIGHT - 30, arcade.color.WHITE, 20)
 
@@ -85,10 +85,14 @@ class GameView(arcade.View):
             self.player.change_x = 0
         elif symbol == arcade.key.RIGHT or symbol == arcade.key.D:
             self.player.change_x = 0
+    
+    def close_game_won(self, delta_time):
+        from views.game_won import GameWonView
+        self.window.show_view(GameWonView())
 
-    def close_game(self, delta_time):
-        from views.title_view import TitleView  
-        self.window.show_view(TitleView())
+    def game_over(self, delta_time):
+        from views.game_over import GameOverView
+        self.window.show_view(GameOverView())
 
     def clear_boss_bullet_list(self, delta_time):
         for raybull in list(self.boss_bullets):
@@ -127,7 +131,7 @@ class GameView(arcade.View):
                     boss.take_damage(1)
                     if boss.is_dead():
                         boss.remove_from_sprite_lists()
-                        arcade.schedule_once(self.close_game, 1.0)
+                        arcade.schedule_once(self.close_game_won, 1.0)
 
             shoot_chance = random.random()
             if shoot_chance < 0.008 and boss.getCanShoot():
@@ -141,10 +145,10 @@ class GameView(arcade.View):
                 # self.boss_bullets.remove(raybull)
                 for player in hit_list:
                     self.player_list.remove(player)
-                    arcade.schedule_once(self.close_game, 1.0)
+                    arcade.schedule_once(self.game_over, 1.0)
         
         for enemy in list(self.enemy_list):
             if enemy.game_over:
-                arcade.schedule_once(self.close_game, 0.5)
+                arcade.schedule_once(self.game_over, 0.5)
     
 
