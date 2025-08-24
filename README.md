@@ -4,9 +4,9 @@ Este es un proyecto sencillo que hicimos usando la librería Arcade en Python. L
 
 - Descripción del Juego
 
-El jugador controla una nave inspirada en el universo de Star Wars (como un X-Wing), que puede moverse a la izquierda y derecha y disparar para destruir enemigos que bajan en oleadas, parecido al Galaga original.
+El jugador controla una nave salida del universo de Star Wars (el Halcón Milenario), que puede moverse a la izquierda y derecha y disparar para destruir enemigos que bajan en oleadas, parecido al Galaga original.
 
-Los enemigos son naves imperiales (por ejemplo, TIE Fighters) que se mueven y atacan. La dificultad va subiendo a medida que el jugador avanza.
+Los enemigos son naves imperiales (TIE Fighters) que se mueven y no deben llegar al fondo de la pantalla. Además de la Estrella de la Muerte, que va atacando, se mueve y es el jefe final para ganar el juego. La dificultad va subiendo a medida que el jugador avanza.
 
 - Tecnologías usadas
 
