@@ -11,3 +11,4 @@ class Enemy(arcade.Sprite):
     def update(self, delta_time: float):
         self.center_y -= self.change_y
         self.scale = ENEMY_SCALING + (0.00015 * (600 - self.center_y))
+        

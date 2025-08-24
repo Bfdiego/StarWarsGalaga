@@ -1,10 +1,10 @@
 import arcade
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE
-from views.game_view import GameView
+from views.title_view import TitleView
 
 def main():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    game = GameView()
+    game = TitleView()
     window.show_view(game)
     arcade.run()
 

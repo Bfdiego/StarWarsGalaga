@@ -66,6 +66,9 @@ class GameView(arcade.View):
         self.bullet_list.draw()
         self.boss_list.draw()
         self.boss_bullets.draw()
+        arcade.draw_text(f"Level: {level}", 10, SCREEN_HEIGHT - 30, arcade.color.WHITE, 20)
+        arcade.draw_text("Boss HP: " + str(self.boss_list[0].hp) if len(self.boss_list) > 0 else "Boss HP: 0",
+                         SCREEN_WIDTH - 200, SCREEN_HEIGHT - 30, arcade.color.WHITE, 20)
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.LEFT or key == arcade.key.A:
@@ -83,7 +86,8 @@ class GameView(arcade.View):
             self.player.change_x = 0
 
     def close_game(self, delta_time):
-        arcade.close_window()
+        from views.title_view import TitleView  
+        self.window.show_view(TitleView())
 
     def clear_boss_bullet_list(self, delta_time):
         for raybull in list(self.boss_bullets):

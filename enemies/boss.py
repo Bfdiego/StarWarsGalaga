@@ -5,11 +5,11 @@ from bullets.boss_raybull import BossRayBull
 class Boss(arcade.Sprite):
     def __init__(self, image="assets/boss.png", scale=BOSS_SCALING):
         super().__init__(image, scale)
-        self.hp = 10
+        self.hp = 50
         self.canShoot = True
 
     def shoot_raybull(self, raybull_list: arcade.SpriteList):
-        raybull = BossRayBull(self.center_x, self.bottom - 270)
+        raybull = BossRayBull(self.center_x, self.bottom - 240)
         raybull_list.append(raybull)
 
     def take_damage(self, dmg: int):
