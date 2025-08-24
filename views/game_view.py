@@ -110,8 +110,6 @@ class GameView(arcade.View):
         self.bullet_list.update(delta_time)
         self.enemy_list.update(delta_time)
         self.boss_list.update(delta_time)
-        # self.bullet_list.update()
-        # self.boss_bullets.update()
         if len(self.enemy_list) == 0:
             level += 1
             self.setup()
@@ -142,7 +140,6 @@ class GameView(arcade.View):
         for raybull in list(self.boss_bullets):
             hit_list = arcade.check_for_collision_with_list(raybull, self.player_list)
             if hit_list:
-                # self.boss_bullets.remove(raybull)
                 for player in hit_list:
                     self.player_list.remove(player)
                     arcade.schedule_once(self.game_over, 1.0)
