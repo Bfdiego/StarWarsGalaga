@@ -26,10 +26,13 @@ Los enemigos son naves imperiales (TIE Fighters) que se mueven y no deben llegar
 
 - Estructura básica del proyecto
 
+* `bullets/`: carpeta que contiene la lógica de los disparos del jugador y la Estrella de la Muerte.
+* `enemies/`: carpeta dedicada al jefe (Estrella de la Muerte) y las naves imperiales.
+* `views/`: carpeta con todas las pantallas del juego.
 * `main.py`: archivo principal donde arranca el juego.
 * `player.py`: contiene la lógica de la nave del jugador.
-* `enemy.py`: contiene la lógica de los enemigos.
 * `assets/`: carpeta con las imágenes (sprites de naves, fondo, disparos, etc).
+* `settings.py`: valores fijos que se usan en el proyecto. 
 
 Controles
 
