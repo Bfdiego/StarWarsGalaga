@@ -12,7 +12,6 @@ Los enemigos son naves imperiales (TIE Fighters) que se mueven y no deben llegar
 
 * Python 3
 * Arcade (para gráficos y manejo del juego)
-* PIL (para manejo básico de imágenes)
 
 - Cómo correr el juego
 
@@ -36,3 +35,5 @@ Controles
 
 * Flecha izquierda/derecha → mover la nave.
 * Espacio → disparar.
+
+En este proyecto utilizamos arcade.schedule, una función que no se revisó en clases pero que resultó muy útil para manejar la lógica de actualización del juego en intervalos de tiempo definidos. Gracias a esto pudimos separar la lógica de dibujo de la lógica de actualización, manteniendo el código más ordenado y predecible. Además, aprovechamos el sistema de Views que ofrece Arcade (arcade.View) para estructurar las distintas pantallas del juego: una StartView (pantalla de inicio), una GameView (el juego en ejecución), una PauseView (pausa) y una GameOverView (pantalla final). Esta organización permitió una navegación clara entre estados y una experiencia de usuario más completa.
